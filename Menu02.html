@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Slider zoomed</title>
+   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+   <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+   <script type="text/javascript" src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+
+   <link href="https://code.jquery.com/ui/1.11.1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+</head>
+
+<body>
+
+
+	<div class="menu">
+		<div class="conteneurbarres">
+			<div class="barrehaut"></div>
+			<div class="barrebas"></div>
+			<div class="barremilieu"></div>
+			<div class="hovermenu"></div>
+		</div>
+		</div>
+
+
+
+
+<style type="text/css">
+  body{
+    margin:0;
+    padding:0;
+	background-color:#3F3E3C;
+  }
+	
+	.menu{
+		position:absolute;
+		width:26px;
+		height:26px;
+		top:20px;
+		right:20px;
+		-webkit-transform:rotate(0);
+		-ms-transform:rotate(0);
+		transform: rotate(0);
+		-webkit-transition:-webkit-transform 0.3s ease-in  0.3s;
+		-moz-transition:-moz-transform 0.3s ease-in  0.3s;
+		transition: transform 0.3s ease-in  0.3s;
+		
+	}
+	.conteneurbarres{
+		width:100%;
+		height:100%;
+		position:relative;
+	}
+	.barrehaut{
+		position:absolute;
+		z-index:2;
+		width:100%;
+		height:20%;
+		top:0;
+		left:50%;
+		background-color:#F0E6DE;
+		-webkit-transform:translateX(-50%);
+		-ms-transform:translateX(-50%);
+		transform: translateX(-50%);
+		
+	}
+	.barremilieu{
+		position:absolute;
+		z-index:3;
+		width:100%;
+		height:20%;
+		top:50%;
+		left:50%;
+		background-color:#F0E6DE;
+		-webkit-transform:translate(-50%,-50%);
+		-ms-transform:translate(-50%,-50%);
+		transform: translate(-50%,-50%);
+	
+	}
+	.barrebas{
+		position:absolute;
+		z-index:4;
+		width:100%;
+		height:20%;
+		bottom:0;
+		left:50%;
+		background-color:#F0E6DE;
+		-webkit-transform:translateX(-50%);
+		-ms-transform:translateX(-50%);
+		transform: translateX(-50%);
+	
+	}
+	.hovermenu{
+		width:100%;
+		height:100%;
+		z-index:25;
+		position:absolute;
+		top:0;
+		left:0;
+		width:100%;
+		height:100;
+		background-color:#0f0;
+		opacity: 0;
+	}
+	
+</style>
+
+<script>
+
+   $( window ).on( "load", function() {
+	   
+       $('.hovermenu').mouseover(function() {	
+			
+		$('.barrehaut').animate({top:'40%' },200,   function() { });
+		  $('.barrebas').animate({bottom:'40%'},200,   function() { 
+		  
+		   $('.barrebas').css('display','none');
+			  $('.barrehaut').css('display','none');
+			  $('.conteneurbarres').append("<div class='barremilieu2'></div>");
+				$('.barremilieu2').css('position','absolute');
+				$('.barremilieu2').css('z-index','5');
+				$('.barremilieu2').css('background-color','#F0E6DE');
+				$('.barremilieu2').css('width','20%');
+				$('.barremilieu2').css('height','20%');
+				$('.barremilieu2').css('top','50%');
+				$('.barremilieu2').css('left','50%');
+				$('.barremilieu2').css('-webkit-transform','translate(-50%,-50%)');
+				$('.barremilieu2').css('-ms-transform','translate(-50%,-50%)');
+				$('.barremilieu2').css('transform','translate(-50%,-50%)');
+				
+				$('.barremilieu2').animate({height:'100%' },900, 'easeOutElastic', function() { });
+			
+		  });
+		   
+  $('.menu').css('transform','rotate(225deg)');
+	    });
+	   
+	    $('.menu').mouseout(function() {	
+			$('.barremilieu2').animate({height:'20%' },200,function() { 
+				$('.barremilieu2').remove();
+				
+				setTimeout(finitionmenu, 400);
+			});
+			$('.menu').css('transform','rotate(0)');
+		 	
+	    });
+	   
+	   function finitionmenu(){
+		  $('.barrebas').css('display','block');
+			  $('.barrehaut').css('display','block');
+		   	$('.barrehaut').animate({top:0 },600, 'easeOutElastic',  function() { });
+		   $('.barrebas').animate({bottom:0 },600, 'easeOutElastic',   function() { });
+	  }
+	   
+    });
+
+</script>
+
+   
+   
+</body>
+</html>

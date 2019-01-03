@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Slider zoomed</title>
+   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+   <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+   <script type="text/javascript" src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+
+   <link href="https://code.jquery.com/ui/1.11.1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+</head>
+
+<body>
+
+
+	<div class="menu">
+		<div class="conteneurbarres">
+			<div class="barrehautgauche"></div>
+			<div class="barrehautcentre"></div>
+			<div class="barrehautdroite"></div>
+			<div class="barrebasgauche"></div>
+			<div class="barrebascentre"></div>
+			<div class="barrebasdroite"></div>
+			<div class="barremilieugauche"></div>
+			<div class="barremilieucentre"></div>
+			<div class="barremilieudroite"></div>
+			<div class="hovermenu"></div>
+		</div>
+		</div>
+
+
+
+
+<style type="text/css">
+  body{
+    margin:0;
+    padding:0;
+	background-color:#C0CCC9;
+  }
+	
+	.menu{
+	position:absolute;
+		width:20px;
+		height:20px;
+		top:20px;
+		right:20px;
+		-webkit-transform:rotate(0);
+		-ms-transform:rotate(0);
+		transform: rotate(0);
+		-webkit-transition:-webkit-transform 0.2s ease-in  0s;
+		-moz-transition:-moz-transform 0.2s ease-in  0s;
+		transition: transform 0.2s ease-in  0s;
+		
+	}
+	.conteneurbarres{
+		width:100%;
+		height:100%;
+		position:relative;
+	}
+	.barrehautgauche{
+		position:absolute;
+		z-index:2;
+		width:20%;
+		height:20%;
+		top:0;
+		left:0;
+		background-color:#fff;
+	}
+	.barrehautcentre{
+		position:absolute;
+		z-index:3;
+		width:20%;
+		height:20%;
+		top:0;
+		left:40%;
+		background-color:#fff;
+	}
+	.barrehautdroite{
+		position:absolute;
+		z-index:4;
+		width:20%;
+		height:20%;
+		top:0;
+		left:80%;
+		background-color:#fff;
+	}
+	.barremilieugauche{
+		position:absolute;
+		z-index:5;
+		width:20%;
+		height:20%;
+		top:40%;
+		left:0;
+		background-color:#fff;
+	}
+	.barremilieucentre{
+		position:absolute;
+		z-index:6;
+		width:20%;
+		height:20%;
+		top:40%;
+		left:40%;
+		background-color:#fff;
+	}
+	.barremilieudroite{
+		position:absolute;
+		z-index:7;
+		width:20%;
+		height:20%;
+		top:40%;
+		left:80%;
+		background-color:#fff;
+	}
+	.barrebasgauche{
+		position:absolute;
+		z-index:8;
+		width:20%;
+		height:20%;
+		top:80%;
+		left:0;
+		background-color:#fff;
+	}
+	.barrebascentre{
+		position:absolute;
+		z-index:9;
+		width:20%;
+		height:20%;
+		top:80%;
+		left:40%;
+		background-color:#fff;
+	}
+	.barrebasdroite{
+		position:absolute;
+		z-index:10;
+		width:20%;
+		height:20%;
+		top:80%;
+		left:80%;
+		background-color:#fff;
+	}
+	
+	.hovermenu{
+		width:100%;
+		height:100%;
+		z-index:25;
+		position:absolute;
+		top:0;
+		left:0;
+		width:100%;
+		height:100;
+		background-color:#0f0;
+		opacity: 0;
+	}
+	
+</style>
+
+<script>
+
+   $( window ).on( "load", function() {
+	   
+       $('.hovermenu').mouseover(function() {	
+			$('.barrehautgauche').animate({top:'20%',left:'40%' },200,   function() { });
+			$('.barrehautdroite').animate({top:'40%',left:'60%' },200,   function() { });
+		   $('.barrebasgauche').animate({top:'40%',left:'20%' },200,   function() { });
+			$('.barrebasdroite').animate({top:'60%',left:'40%' },200,   function() { 
+				$('.barremilieugauche').css('width','100%');
+				$('.barrehautcentre').css('height','100%');
+				$('.menu').css('transform','rotate(135deg)');});
+		   
+	    });
+	   
+	    $('.menu').mouseout(function() {	
+			
+			$('.menu').css('transform','rotate(0)');
+			
+				setTimeout(finitionmenu, 200);
+		 	
+	    });
+	   
+	   function finitionmenu(){
+		   $('.barremilieugauche').css('width','20%');
+				$('.barrehautcentre').css('height','20%');
+		$('.barrehautgauche').animate({top:'0',left:'0' },600, 'easeOutElastic',   function() { });
+			$('.barrehautdroite').animate({top:'0',left:'80%' },600, 'easeOutElastic',   function() { });
+		   $('.barrebasgauche').animate({top:'80%',left:'0' },600, 'easeOutElastic',   function() { });
+			$('.barrebasdroite').animate({top:'80%',left:'80%' },600, 'easeOutElastic',   function() { });
+	  }
+	   
+    });
+
+</script>
+
+   
+   
+</body>
+</html>
